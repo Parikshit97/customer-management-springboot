@@ -1,5 +1,6 @@
 package com.example;
 
+import org.apache.coyote.Response;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,10 @@ public class Main {
         customer.setEmail(request.email());
         customer.setAge(request.age());
         customerRepository.save(customer);
+    }
+
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Integer id){
+        customerRepository.deleteById(id);
     }
 }
